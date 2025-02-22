@@ -1,0 +1,92 @@
+// Sem01.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+
+enum Status {
+    Available,
+    Borrowed,
+    Reserved
+};
+
+struct Book {
+    char title[50];
+    char author[20];
+    int publicationYear;
+    Status status;
+};
+
+struct Library {
+    char name[50];
+    Book books[10];
+    int bookCount;
+
+};
+
+const char* getBookStatus(Status status)
+{
+    switch (status)
+    {
+    case Status::Available:
+        return "Available";
+    case Status::Borrowed:
+        return "Borrowed";
+    case Status::Reserved:
+        return "Reserved";
+    }
+    return nullptr;
+}
+
+void addBook(Library& library, const char* title , const char* author, int publicationYear)
+{
+    if (library.bookCount >= 10)
+    {
+        return;
+    }
+    strcpy_s(library.books[library.bookCount].title, title);
+    strcpy_s(library.books[library.bookCount].author, author);
+    library.books[library.bookCount].publicationYear = publicationYear;
+    library.books[library.bookCount].status = Available;
+    library.bookCount++;
+}
+
+void borrowBook(Book& book)
+{
+    if (book.status == Available)
+    {
+        book.status = Borrowed;
+    }
+}
+
+void reserveBook(Book& book) {
+    if (book.status == Available)
+    {
+        book.status = Reserved;
+    }
+}
+
+void printLibrary(const Library& library)
+{
+    for (int i = 0; i < library.bookCount; i++)
+    {
+        std::cout << library.books[i].title << std::endl;
+        std::cout << library.books[i].author << std::endl;
+        std::cout << library.books[i].publicationYear << std::endl;
+        std::cout << getBookStatus(library.books[i].status) << std::endl;
+    }
+}
+
+int main()
+{
+    Library library = {"Biblioteka"};
+    addBook(library,"It ends with us","Colleen Hoover",2016);
+    addBook(library, "November 9", "Colleen Hoover", 2015);
+
+    printLibrary(library);
+
+    borrowBook(library.books[0]);
+    reserveBook(library.books[1]);
+
+    printLibrary(library);
+
+}
