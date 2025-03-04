@@ -180,7 +180,7 @@ MarkdownRow readRow(std::ifstream& ifs)
 
 	char nameBuff[Constants::BUFFER_CAPACITY]{};
 	ifs.getline(nameBuff, Constants::BUFFER_CAPACITY, Constants::SEPARATOR);
-	trimString(nameBuff, row.name);
+	trimString(nameBuff, row.name); // In case the string is surrounded by multiple spaces in the cell
 
 	char fnBuff[Constants::BUFFER_CAPACITY]{};
 	ifs.getline(fnBuff, Constants::BUFFER_CAPACITY, Constants::SEPARATOR);
