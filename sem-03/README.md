@@ -300,7 +300,7 @@ namepace studentManager
     {
     	delete[] s.name;
     	s.name = nullptr;
-    	s.averageGrade = s.fn = s.gradesCount = 0;
+    	s.averageGrade = s.gradesCount = 0;
     }
     
     void print(const Student& st) 
