@@ -123,7 +123,7 @@ public:
 
 	bool knowsProgrammingLanguage(ProgrammingLanguages language) const
 	{
-		return languages & (1 << (int)languages);
+		return (languages & (1 << (int)languages)) != 0;
 	}
 
 	void print() const
