@@ -43,7 +43,7 @@ int main(){
     A obj;
     obj.f();
     testFunc1(&obj);
-    obj.t();
+    obj.g();
     testFunc2(obj);
     return 0;
 }
