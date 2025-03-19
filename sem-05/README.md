@@ -177,67 +177,6 @@ int main()
 **Разписваме Г4 само, когато имаме динамична памет в класа/ структурата!**
 
 
-## Примери - да не ги качваме
-- Казваме, че не пишем А() {}, a A() = default;
-- К.К
-```c++
-// базов
-A obj;
-A obj2(obj);
-
-// базов ф-я
-void f(A obj)  vs void g(A& red)
-
-// кк при член-данни
-class A {};
-class B {};
-
-class X
-{
-int a;
-A obj1;
-B obj2;
-public:
-X(const X& other): a(other.a), obj1(other.obj1), obj2(other.obj2)
-};
-```
-- Оп=
-```c++
-// базов
-A obj1;
-A obj2;
-obj1 = obj2;
-
-
-// сравнение с кк
-A obj1;
-A obj2 = obj1; //cc
-
-
-//rvo
-A createObject(...)
-{
-return A(...);
-}
-
-A temp = createObject(); // очакваме 2 копия,но са 0
-
-
-// shallow copy
-class A
-{
-char* str;
-}
-
-A obj;
-A obj2(obj); // може рисунка как двата обекта сочат към един ресурс
-```
-- Забраняване
-```c++
-А(const A& other) = delete;
-A& operator=(const A&) = delete;
-```
-
 ## **Задачи**
 
 **Задача 1:** Да се напише клас студент с име (с произволна дължина), масив от оценки (с произволна дължина) и цитат (с максимална дължина 30 символа).
