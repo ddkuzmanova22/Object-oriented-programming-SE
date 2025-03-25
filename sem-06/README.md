@@ -251,7 +251,7 @@ public:
         MyDouble temp = *this; // copy the current state of the object
         a++; // update the state of the object
         b++;
-        return temp; // returns a temp object
+        return temp; // return a temp object
     }
 };
 
